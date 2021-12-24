@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-    php:
-        container_name: php
+    joan-apps-php:
+        container_name: joan-apps-php
         build:
             context: ./
             dockerfile: images/php/Dockerfile
@@ -12,15 +12,15 @@ services:
         ports:
             - "8080:80"
         networks:
-            - josephcr-network
+            - joan-network
         volumes:
             - ./config/apache/default.conf:/etc/apache2/sites-enabled/default.conf
             - type: bind
               source: ./src
               target: /var/www/html
     mysql:
-        platform: linux/x86_64
         container_name: mysql
+        platform: linux/x86_64
         image: mysql
         restart: always
         environment:
@@ -28,12 +28,11 @@ services:
         ports:
             - "3306:3306"
         networks:
-            - josephcr-network
-            - database-network
+            - joan-network
         volumes:
             - ./storage/mysql:/var/lib/mysql
-    phpmyadmin:
-        container_name: phpmyadmin
+    joan-phpmyadmin:
+        container_name: joan-phpmyadmin
         image: phpmyadmin
         ports:
             - "3305:80"
@@ -44,9 +43,9 @@ services:
         depends_on:
             - mysql
         networks:
-            - database-network
+            - joan-network
 volumes:
     src:
 networks:
-  josephcr-network:
-  database-network:
+  joan-network:
+    external: true
