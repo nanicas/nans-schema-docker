@@ -1,4 +1,4 @@
-# docker-rose (simple app with docker files)
+# (simple app with docker files)
 
 Existem duas maneiras de configurar seu ambiente, com ou sem o DOCKER-COMPOSE.YML (gerenciador de contêineres).
 
@@ -116,7 +116,7 @@ rm 'src/app/.gitkeep'
 > Por fim, execute novamente o primeiro comando da operação, para adicionar o sub-módulo:
 <pre>
 $ git submodule add https://github.com/own/app_repository.git app
-Cloning into '/Users/Server/docker-rose/src/app'...
+Cloning into '/Users/Server/joan-docker/src/app'...
 </pre>
 
 Fim.
