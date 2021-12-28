@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-    joan-apps-php:
-        container_name: joan-apps-php
+    reason-apps-php:
+        container_name: reason-apps-php
         build:
             context: ./
             dockerfile: images/php/Dockerfile
@@ -12,7 +12,7 @@ services:
         ports:
             - "8080:80"
         networks:
-            - joan-network
+            - reason-network
         volumes:
             - ./config/apache/default.conf:/etc/apache2/sites-enabled/default.conf
             - type: bind
@@ -28,11 +28,11 @@ services:
         ports:
             - "3306:3306"
         networks:
-            - joan-network
+            - reason-network
         volumes:
             - ./storage/mysql:/var/lib/mysql
-    joan-phpmyadmin:
-        container_name: joan-phpmyadmin
+    reason-phpmyadmin:
+        container_name: reason-phpmyadmin
         image: phpmyadmin
         ports:
             - "3305:80"
@@ -43,9 +43,9 @@ services:
         depends_on:
             - mysql
         networks:
-            - joan-network
+            - reason-network
 volumes:
     src:
 networks:
-  joan-network:
+  reason-network:
     external: true
