@@ -1,0 +1,3 @@
+[submodule "src/reason-schedule-app"]
+	path = src/reason-schedule-app
+	url = https://github.com/reason-oficial/reason-schedule-app.git
