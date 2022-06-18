@@ -1,25 +1,25 @@
 version: '3.8'
 services:
-    reason-apps-php:
-        container_name: reason-apps-php
+    nocs-apps-php:
+        container_name: nocs-apps-php
         build:
             context: ./
             dockerfile: images/php/Dockerfile
         depends_on:
-            - reason-mysql
+            - nocs-mysql
         links:
-            - reason-mysql
+            - nocs-mysql
         ports:
             - "8080:80"
         networks:
-            - reason-network
+            - nocs-network
         volumes:
             - ./config/apache/default.conf:/etc/apache2/sites-enabled/default.conf
             - type: bind
               source: ./src
               target: /var/www/html
-    reason-mysql:
-        container_name: reason-mysql
+    nocs-mysql:
+        container_name: nocs-mysql
         platform: linux/x86_64
         image: mysql
         restart: always
@@ -28,24 +28,24 @@ services:
         ports:
             - "3306:3306"
         networks:
-            - reason-network
+            - nocs-network
         volumes:
             - ./storage/mysql:/var/lib/mysql
-    reason-phpmyadmin:
-        container_name: reason-phpmyadmin
+    nocs-phpmyadmin:
+        container_name: nocs-phpmyadmin
         image: phpmyadmin
         ports:
             - "3305:80"
         restart: always
         environment:
-            PMA_HOST: reason-mysql
+            PMA_HOST: nocs-mysql
             PMA_PASSWORD: ""
         depends_on:
-            - reason-mysql
+            - nocs-mysql
         networks:
-            - reason-network
+            - nocs-network
 volumes:
     src:
 networks:
-  reason-network:
+  nocs-network:
     external: true
