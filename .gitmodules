@@ -1,3 +1,6 @@
 [submodule "src/nocs-schedule-app"]
 	path = src/nocs-schedule-app
 	url = https://github.com/nocodigos/nocs-schedule-app.git
+[submodule "src/nans-schedule-app"]
+	path = src/nans-schedule-app
+	url = https://github.com/codenans/nans-schedule-app.git

@@ -1,25 +1,25 @@
 version: '3.8'
 services:
-    nocs-apps-php:
-        container_name: nocs-apps-php
+    nans-apps-php:
+        container_name: nans-apps-php
         build:
             context: ./
             dockerfile: images/php/Dockerfile
         depends_on:
-            - nocs-mysql
+            - nans-mysql
         links:
-            - nocs-mysql
+            - nans-mysql
         ports:
             - "8080:80"
         networks:
-            - nocs-network
+            - nans-network
         volumes:
             - ./config/apache/default.conf:/etc/apache2/sites-enabled/default.conf
             - type: bind
               source: ./src
               target: /var/www/html
-    nocs-mysql:
-        container_name: nocs-mysql
+    nans-mysql:
+        container_name: nans-mysql
         platform: linux/x86_64
         image: mysql
         restart: always
@@ -28,24 +28,24 @@ services:
         ports:
             - "3306:3306"
         networks:
-            - nocs-network
+            - nans-network
         volumes:
             - ./storage/mysql:/var/lib/mysql
-    nocs-phpmyadmin:
-        container_name: nocs-phpmyadmin
+    nans-phpmyadmin:
+        container_name: nans-phpmyadmin
         image: phpmyadmin
         ports:
             - "3305:80"
         restart: always
         environment:
-            PMA_HOST: nocs-mysql
+            PMA_HOST: nans-mysql
             PMA_PASSWORD: ""
         depends_on:
-            - nocs-mysql
+            - nans-mysql
         networks:
-            - nocs-network
+            - nans-network
 volumes:
     src:
 networks:
-  nocs-network:
+  nans-network:
     external: true
