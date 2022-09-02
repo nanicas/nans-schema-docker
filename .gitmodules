@@ -1,0 +1,3 @@
+[submodule "src/nocs-schedule-app"]
+	path = src/nocs-schedule-app
+	url = https://github.com/nanicas/nans-schedule-app.git
